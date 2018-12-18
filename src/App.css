@@ -5,3 +5,12 @@
   margin: auto;
   background-color: #aaaaaa;
 }
+
+.screen {
+  background-color: #aaaaff;
+  padding: 1em;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
