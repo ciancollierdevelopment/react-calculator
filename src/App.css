@@ -1,22 +1,38 @@
 /* Stylesheet For All Components */
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
 .App {
   width: 40%;
-  margin: auto;
   background-color: #aaaaaa;
+  height: 80%;
 }
 
 .screen {
   background-color: #aaaaff;
   padding: 1em;
   width: 85%;
-  margin-left: auto;
-  margin-right: auto;
+  height: 10%;
+  margin-left: 7.5%;
+  margin-top: 7.5%;
+  display: inline-block;
 }
 
 .key {
   margin-left: 2.5%;
   width: 21.88%;
+  height: 12%;
+  margin-top: 2%;
   background-color: #000000;
   color: #ffffff;
   border: 0;

@@ -15,10 +15,40 @@ class App extends Component {
     if (button_value == "=") {
       let answer = 0;
       let input = this.state.screen_content.split('');
-      
+      let mode = '+';
+      let holder = "";
 
+      for (let i = 0; i < input.length; i++) {
+        if (input[i] == "+" || input[i] == "-" || input[i] == "/" || input[i] == "X" || i == (input.length - 1)) {
+          if (i == (input.length - 1)) {
+            holder += input[i];
+          }
+
+          switch (mode) {
+            case "+":
+              answer += parseFloat(holder);
+              break;
+            case "-":
+              answer -= parseFloat(holder);
+              break;
+            case "X":
+              answer *= parseFloat(holder);
+              break;
+            case "/":
+              answer /= parseFloat(holder);
+              break;
+          }
+          holder = "";
+          mode = input[i];
+        }
+        else {
+          holder += input[i];
+        }
+      }
+
+      new_screen_content = answer.toString();
     }
-    else {
+    else if (button_value != "C"){
       new_screen_content = this.state.screen_content + button_value.toString();
     }
     this.setState({screen_content: new_screen_content});
