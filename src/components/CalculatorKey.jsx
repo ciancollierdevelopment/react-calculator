@@ -7,7 +7,7 @@ class CalculatorKey extends Component {
 
   render() {
     return (
-      <button className="key">
+      <button className="key" onClick={this.props.onClick}>
         {this.props.value}
       </button>
     );
