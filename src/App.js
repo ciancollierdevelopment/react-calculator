@@ -26,6 +26,23 @@ class App extends Component {
     }
   }
 
+  priorityLevel = (p) => {
+    switch (p) {
+      case '/':
+        return 3;
+        break;
+      case 'X':
+        return 2;
+        break;
+      case '+':
+        return 1;
+        break;
+      case '-':
+        return 1;
+        break;
+    }
+  }
+
   onButtonClick = (button_value) => {
     let new_screen_content = "";
 
@@ -57,11 +74,9 @@ class App extends Component {
         }
       }
 
-      let bodmas = ['/', 'X', '+', '-'];
-
-      for (let c = 0; c < bodmas.length; c++) {
+      for (let priority = 3; priority > 0; priority--) {
         for (let d = 0; d < operations.length; d++) {
-          if (operations[d][1] == bodmas[c]) {
+          if (this.priorityLevel(operations[d][1]) == priority) {
             let result = this.performOperation(operations[d]);
             answer = result;
             if (d !== 0) {
