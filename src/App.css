@@ -12,10 +12,29 @@ body {
   height: 100%;
 }
 
+@media only screen and (min-width: 300px) {
+  .App {
+    width: 40%;
+    height: 80%;
+    background-color: red;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .App {
+    background-color: green;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .App {
-  width: 40%;
-  background-color: #aaaaaa;
-  height: 80%;
+  /*background-color: #aaaaaa;*/
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 0.5em;
 }
 
 .screen {
@@ -23,16 +42,11 @@ body {
   padding: 1em;
   width: 85%;
   height: 10%;
-  margin-left: 7.5%;
-  margin-top: 7.5%;
-  display: inline-block;
 }
 
 .key {
-  margin-left: 2.5%;
   width: 21.88%;
   height: 12%;
-  margin-top: 2%;
   background-color: #000000;
   color: #ffffff;
   border: 0;
