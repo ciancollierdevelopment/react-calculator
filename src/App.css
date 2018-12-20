@@ -12,7 +12,7 @@ body {
   height: 100%;
 }
 
-@media only screen and (min-width: 300px) {
+@media (min-width: 500px) {
   .App {
     width: 40%;
     height: 80%;
@@ -20,7 +20,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 300px) {
+@media (max-width: 500px) {
   .App {
     background-color: green;
     width: 100%;

@@ -6,7 +6,7 @@ import CalculatorKey from './components/CalculatorKey.jsx';
 class App extends Component {
   state = {
     screen_content: "",
-    buttons: [1, 2, 3, "+", 4, 5, 6, "-", 7, 8, 9, "X", 0, ".", "C", "/", "="]
+    buttons: [1, 2, 3, "+", 4, 5, 6, "-", 7, 8, 9, "X", 0, ".", "C", "/", "=", '(', ')']
   }
 
   performOperation = (operands) => {
@@ -27,19 +27,24 @@ class App extends Component {
   }
 
   priorityLevel = (p) => {
-    switch (p) {
-      case '/':
-        return 3;
-        break;
-      case 'X':
-        return 2;
-        break;
-      case '+':
-        return 1;
-        break;
-      case '-':
-        return 1;
-        break;
+    if (p[3] != 0) {
+      return 3 + p[3];
+    }
+    else {
+      switch (p[1]) {
+        case '/':
+          return 3;
+          break;
+        case 'X':
+          return 2;
+          break;
+        case '+':
+          return 1;
+          break;
+        case '-':
+          return 1;
+          break;
+      }
     }
   }
 
@@ -52,31 +57,44 @@ class App extends Component {
       let holder = "";
       let operationsCounter = 0;
       let operations = [];
+      let bracketLevel = 0;
+      let bracketLevelHolder = 0;
 
       for (let i = 0; i < input.length; i++) {
-        if (input[i] == '+' || input[i] == '-' || input[i] == 'X' || input[i] == '/' || i == (input.length - 1)) {
-          if (i == (input.length - 1)) {
+        if (input[i] == '(') {
+          bracketLevel++;
+        }
+        else if (input[i] == ')') {
+          bracketLevel--;
+        }
+        else {
+          if (input[i] == '+' || input[i] == '-' || input[i] == 'X' || input[i] == '/' || i == (input.length - 1)) {
+            if (i == (input.length - 1)) {
+              holder += input[i];
+            }
+
+            if (operations.length !== 0) {
+              operations[operationsCounter].push(parseFloat(holder));
+              operations[operationsCounter].push(bracketLevelHolder);
+              console.log(operations[operationsCounter]);
+              operationsCounter++;
+            }
+
+            if (i !== (input.length - 1)) {
+              operations.push([parseFloat(holder), input[i]]);
+              bracketLevelHolder = bracketLevel;
+            }
+
+            holder = "";
+          } else {
             holder += input[i];
           }
-
-          if (operations.length !== 0) {
-            operations[operationsCounter].push(parseFloat(holder));
-            operationsCounter++;
-          }
-
-          if (i !== (input.length - 1)) {
-            operations.push([parseFloat(holder), input[i]]);
-          }
-
-          holder = "";
-        } else {
-          holder += input[i];
         }
       }
 
-      for (let priority = 3; priority > 0; priority--) {
+      for (let priority = 10; priority > 0; priority--) {
         for (let d = 0; d < operations.length; d++) {
-          if (this.priorityLevel(operations[d][1]) == priority) {
+          if (this.priorityLevel(operations[d]) == priority) {
             let result = this.performOperation(operations[d]);
             answer = result;
             if (d !== 0) {
