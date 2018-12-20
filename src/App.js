@@ -70,6 +70,11 @@ class App extends Component {
           bracketLevel++;
         }
         else if (input[i] == ')') {
+          if (i == (input.length - 1)) {
+            operations[operationsCounter].push(parseFloat(holder));
+            operations[operationsCounter].push(bracketLevelHolder);
+          }
+
           bracketLevel--;
         }
         else {
