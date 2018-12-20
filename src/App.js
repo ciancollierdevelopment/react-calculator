@@ -6,7 +6,7 @@ import CalculatorKey from './components/CalculatorKey.jsx';
 class App extends Component {
   state = {
     screen_content: "",
-    buttons: [1, 2, 3, "+", 4, 5, 6, "-", 7, 8, 9, "X", 0, ".", "C", "/", "=", '(', ')']
+    buttons: [1, 2, 3, "+", 4, 5, 6, "-", 7, 8, 9, "X", 0, ".", "C", "/", "=", '(', ')', '^']
   }
 
   performOperation = (operands) => {
@@ -23,15 +23,20 @@ class App extends Component {
       case '/':
         return operands[0] / operands[2];
         break;
+      case '^':
+        return Math.pow(operands[0], operands[2]);
     }
   }
 
   priorityLevel = (p) => {
     if (p[3] != 0) {
-      return 3 + p[3];
+      return 4 + p[3];
     }
     else {
       switch (p[1]) {
+        case '^':
+          return 4;
+          break;
         case '/':
           return 3;
           break;
@@ -68,7 +73,7 @@ class App extends Component {
           bracketLevel--;
         }
         else {
-          if (input[i] == '+' || input[i] == '-' || input[i] == 'X' || input[i] == '/' || i == (input.length - 1)) {
+          if (input[i] == '+' || input[i] == '-' || input[i] == 'X' || input[i] == '/' || input[i] == '^' || i == (input.length - 1)) {
             if (i == (input.length - 1)) {
               holder += input[i];
             }
