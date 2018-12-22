@@ -1,5 +1,7 @@
 /* Stylesheet For All Components */
 
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
 html {
   height: 100%;
 }
@@ -43,16 +45,22 @@ body {
 }
 
 .screen {
+  display: flex;
   background-color: #aaaaff;
-  padding: 1em;
   width: 85%;
-  height: 10%;
+  height: 15%;
+  font-size: 1rem;
+  font-family: 'Press Start 2P', cursive;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .key {
   width: 21.88%;
-  height: 12%;
+  height: 10%;
   background-color: #000000;
   color: #ffffff;
   border: 0;
+  font-size: 1rem;
 }
